@@ -18,11 +18,13 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.MsgService"
-            android:process=":msgservice"
+        <service
+            android:name=".service.MsgService"
             android:enabled="true"
-            />
+            android:process=":msgservice" />
 
+        <activity android:name=".NewProcessActivity"
+            android:process=":msgservice"></activity>
     </application>
 
 </manifest>

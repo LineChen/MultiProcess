@@ -1,6 +1,7 @@
 package com.beiing.multiprocess.service;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -13,8 +14,11 @@ import android.util.Log;
 
 import com.beiing.multiprocess.IMsgReveiver;
 import com.beiing.multiprocess.ISendMsg;
+import com.beiing.multiprocess.NewProcessActivity;
 import com.beiing.multiprocess.R;
 import com.beiing.multiprocess.bean.MsgBean;
+
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 
 /**
  * Created by linechen on 2017/6/26.<br/>
@@ -62,6 +66,11 @@ public class MsgService extends Service {
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round))
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setWhen(System.currentTimeMillis());
+        Intent intent1 = new Intent(this, NewProcessActivity.class);
+        intent1.setFlags(FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent intent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
+        builder.setContentIntent(intent);
+
         new Thread(new Session()).start();
     }
 
