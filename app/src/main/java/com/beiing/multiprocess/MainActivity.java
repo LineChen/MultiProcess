@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.beiing.multiprocess.bean.MsgBean;
 import com.beiing.multiprocess.service.MsgService;
+import com.beiing.ndktest.NativeFunction;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.edit_send);
 
         setUpService();
+
+        Log.e(TAG, NativeFunction.getAppKey());
     }
 
     private void setUpService() {
